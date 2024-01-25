@@ -4,7 +4,7 @@ import { favorilereEkle } from './store/actions';
 import './App.css'
 import { useEffect, useState } from 'react';
 import  axios  from 'axios';
-import FavCats from './components/favCats';
+import FavCats from './components/FavCats';
 
 
 function App() {
