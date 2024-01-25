@@ -11,15 +11,18 @@ function App() {
   const favCats = useSelector((store) => store.favCats);
   const [fact, setFact] = useState("");
   const dispatch = useDispatch();
-  const lsKey = 'favCats';
+  const lsKey = 'hellokedy-pro-ls-key';
 
   useEffect(() => {
+    //localstoragedan ls key ile datayı çek (readFromLocalStorage)
     const localFavCats =  readFromLocalStorage(lsKey);
-    if (localFavCats) {
+    if (localFavCats?.length > 0) {
+      //okuduğum datayı favlistemde tut
       localFavCats.map((cat) => (
         dispatch(favorilereEkle(cat))
       ));
     }
+
     yeniKediGetir();
   }, [])
 
@@ -44,11 +47,10 @@ function App() {
       console.error('Error setting up the request:', error?.message);
     }
  }
-
- useEffect(()=>{
-  const data = favCats.length === 0 ? [] : favCats;
-  setToLocalStorage(lsKey,data)
- },[favCats])
+    //favCats değişince localstorageyi
+  useEffect(()=>{
+  setToLocalStorage(lsKey,favCats)
+  },[favCats])
 
 
 
@@ -56,7 +58,7 @@ function App() {
 const setToLocalStorage = (key, data) => {
   localStorage.setItem(key, JSON.stringify(data));
 };
-// local storage'dan oku
+// local storage'dan al 
 const readFromLocalStorage = (key) => {
   return JSON.parse(localStorage.getItem(key));
 };
