@@ -46,8 +46,8 @@ function App() {
  }
 
  useEffect(()=>{
-  const value = favCats.length === 0 ? [] : favCats;
-  setToLocalStorage(lsKey,value)
+  const data = favCats.length === 0 ? [] : favCats;
+  setToLocalStorage(lsKey,data)
  },[favCats])
 
 
